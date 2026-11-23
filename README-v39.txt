@@ -1,0 +1,1 @@
+SEKTOR Android v39: immersive fullscreen, Android JSON file picker/save, removable comments. Unzip over existing project, commit and push; run new GitHub Actions workflow. Existing app data remains if installed as update with same applicationId and signing key. Debug builds signed with different keys cannot be installed as updates; back up data before uninstalling.
