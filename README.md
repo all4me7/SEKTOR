@@ -1,16 +1,26 @@
-# SEKTOR Android v38 — kompilacja APK przez GitHub Actions
+# SEKTOR B — Galactic Command (Android APK)
 
-Projekt zawiera **oryginalne pliki aplikacji SEKTOR v38** (HTML, CSS, JS i grafiki) w `app/src/main/assets/www/` oraz kontener Android WebView.
+Samodzielny projekt Gradle (Java 17, Android Gradle Plugin 8.7.3, Gradle 8.10.2).
+Zawiera pliki WebView SEKTOR B, bez koniecznosci pobierania zewnetrznych grafik.
 
-## Jak zbudować bez komputera
-1. W telefonie otwórz GitHub i utwórz **prywatne repozytorium** (np. `sektor-android`).
-2. Prześlij **zawartość tego ZIP-a** do głównego katalogu repozytorium, zachowując strukturę folderów, w tym ukryty `.github/workflows/build-apk.yml`. Możesz użyć mobilnej przeglądarki w trybie komputerowym lub importu ZIP przez narzędzie GitHub obsługujące katalogi.
-3. Wejdź do **Actions → Build SEKTOR APK → Run workflow**. Workflow uruchamia się także przy push do gałęzi `main`.
-4. Po zielonym zakończeniu otwórz run i pobierz artefakt `SEKTOR-v38-debug-APK` (ZIP). Rozpakuj i zainstaluj `app-debug.apk` na Androidzie. Android może wymagać zgody na instalację z tego źródła.
+## Budowanie przez GitHub Actions z telefonu
+1. Utworz NOWE repozytorium, np. SEKTOR-B, aby nie nadpisac SEKTOR A.
+2. Wgraj zawartosc ZIP do katalogu glownego repozytorium (foldery `app`, `.github` i pliki Gradle).
+3. W GitHub przejdz do Actions -> Build SEKTOR B APK -> Run workflow.
+   Workflow uruchamia sie tez po push na `main`.
+4. Po zielonym build pobierz artifact `SEKTOR-B-debug-APK` i rozpakuj ZIP.
+5. Zainstaluj `app-debug.apk` na telefonie.
 
-## Uwagi
-- To **debug APK**, podpisany automatycznie kluczem debug na runnerze GitHub. Nie jest przeznaczony do publikacji w Google Play.
-- Aplikacja działa offline. `localStorage` wewnątrz WebView jest **oddzielny** od pamięci przeglądarki Brave/Chrome; dotychczasowe zadania nie przejdą automatycznie.
-- Nie przeprowadzono rzeczywistej kompilacji APK ani testów na urządzeniu w tym środowisku. GitHub Actions przeprowadzi pierwszą kompilację.
-- WebView może wymagać dodatkowego kodu natywnego dla importu/eksportu plików, systemowego wyboru plików i powiadomień. Te funkcje nie są tutaj obiecane jako działające.
-- Dla stabilnych aktualizacji i dystrybucji przygotuj później **release signing key** i build release; debug buildy z różnych uruchomień mogą wymagać odinstalowania poprzedniej wersji (co usuwa lokalne dane).
+## Wazne
+- Nazwa aplikacji: SEKTOR B; identyfikator: pl.sektor.galacticcommand.
+- Wersja: B-1.0.0; zmien `versionCode` i `versionName` w `app/build.gradle` przy aktualizacji.
+- Nie nadpisuje SEKTOR A: ma inny `applicationId` i oddzielny klucz localStorage.
+- Eksport JSON: systemowe okno wyboru miejsca zapisu (Android Storage Access Framework).
+- Import JSON: systemowy wybor pliku.
+- Dziala offline, bez uprawnienia INTERNET.
+- Jest to APK debug, do uzytku osobistego/testowego, nie podpisany kluczem release.
+
+## Poprawka B-1.0.1
+Naprawiono przewijanie listy zadan w WebView: mapa uzywa flex-start zamiast flex-end.
+
+B-1.0.6: short task lists stay anchored to the bottom; long lists remain scrollable.
