@@ -8,8 +8,8 @@ android {
         applicationId 'pl.sektor.galacticcommand'
         minSdk 26
         targetSdk 35
-        versionCode 8
-        versionName 'B-1.0.8'
+        versionCode 9
+        versionName 'B-1.0.9'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -18,4 +18,8 @@ android {
     buildTypes {
         release { minifyEnabled false }
     }
+}
+
+dependencies {
+    implementation 'androidx.webkit:webkit:1.12.1'
 }
